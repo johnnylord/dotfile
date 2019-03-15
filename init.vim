@@ -20,9 +20,6 @@ call plug#begin('~/.config/nvim/plugged')
     " Plug 'zchee/deoplete-clang'         " c/c++/object-c source for deoplete
     Plug 'shougo/neoinclude.vim'        " c family include header completion
 
-    " Code display
-    Plug 'nathanaelkane/vim-indent-guides'  " visualize indentation
-
     " Integration
     Plug 'christoomey/vim-tmux-navigator'	" Vim and tmux's buffer/window navigator
 
@@ -33,13 +30,11 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'majutsushi/tagbar'                " visualize the tag of the current buffer content
     Plug 'wesq3/vim-windowswap'             " easily swap the buffer of two windows
     Plug 'moll/vim-bbye'                    " delete buffer or close windows without messying the layout
-    Plug 'dhruvasagar/vim-zoom'             " maximize the size of the windows like tmux
     Plug 'xuyuanp/nerdtree-git-plugin'	    " Show git icon in nerd tree
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
 
     " Commands
-    Plug 'scrooloose/nerdtree'              " File system Tree explore plugin
     Plug 'tpope/vim-unimpaired'             " Comman pair bracket command
     Plug 'tpope/vim-surround'               " Manipulate pair characters easily
 
