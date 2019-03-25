@@ -121,10 +121,6 @@ colorscheme jellybeans
 nnoremap <silent> <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <silent> <leader>sv :source $MYVIMRC<cr>
 
-" Close window/buffer
-nnoremap <leader>bd :bd<CR>
-nnoremap <leader>cls :close<CR>
-
 " shortcut to change to normal mode
 inoremap jk <Esc>
 inoremap <Esc> <nop>
