@@ -1,10 +1,9 @@
 " [Plugins] {{{
 call plug#begin('~/.config/nvim/plugged')
     " Languages
-    Plug 'morhetz/gruvbox'              " colorscheme for the coding interface
+    Plug 'nanotech/jellybeans.vim'      " colorscheme
     Plug 'scrooloose/nerdcommenter'     " shortcut/key map for comment
     Plug 'cakebaker/scss-syntax.vim'    " highlight for css and scss
-
 
     " Completion
     Plug 'sirver/ultisnips'             " manipulate code snippets(used vim-snippets engine)
@@ -17,7 +16,6 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'roxma/vim-hug-neovim-rpc'
     endif
     Plug 'zchee/deoplete-jedi'          " python source for deoplete
-    " Plug 'zchee/deoplete-clang'         " c/c++/object-c source for deoplete
     Plug 'shougo/neoinclude.vim'        " c family include header completion
 
     " Integration
@@ -29,8 +27,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'kshenoy/vim-signature'            " visualize the mark by the side of the line number
     Plug 'majutsushi/tagbar'                " visualize the tag of the current buffer content
     Plug 'wesq3/vim-windowswap'             " easily swap the buffer of two windows
-    Plug 'moll/vim-bbye'                    " delete buffer or close windows without messying the layout
-    Plug 'xuyuanp/nerdtree-git-plugin'	    " Show git icon in nerd tree
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
 
@@ -40,21 +36,6 @@ call plug#begin('~/.config/nvim/plugged')
 
     " Others
 call plug#end()
-" }}}
-
-" [morhetz/gruvbox] {{{
-colorscheme gruvbox
-let g:gruvbox_contrast_dark="hard"
-set background=dark
-nnoremap <silent> [oh :call gruvbox#hls_show()<CR>
-nnoremap <silent> ]oh :call gruvbox#hls_hide()<CR>
-nnoremap <silent> coh :call gruvbox#hls_toggle()<CR>
-nnoremap * :let @/ = ""<CR>:call gruvbox#hls_show()<CR>*
-nnoremap / :let @/ = ""<CR>:call gruvbox#hls_show()<CR>/
-nnoremap ? :let @/ = ""<CR>:call gruvbox#hls_show()<CR>?
-" }}}
-
-" [nerd-commenter]{{{
 " }}}
 
 " [sirver/ultisnips] {{{
@@ -125,32 +106,8 @@ set laststatus=2
 let g:airline_powerline_fonts=1
 " }}}
 
-" [vim-bbye] {{{
-nnoremap <leader>q :Bdelete<CR>
-nnoremap <leader>Q :close<CR>
-" }}}
-
 " [majutsushi/tagbar] {{{
 nnoremap <silent> <C-t> :TagbarToggle<CR>
-" }}}
-
-" [scrooloose/nerdtree] {{{
-nnoremap <silent> <C-n> :NERDTreeToggle<CR>
-" }}}
-
-" [xuyuanp/nerdtree-git-plugin] {{{
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : "☒",
-    \ "Unknown"   : "?"
-    \ }
 " }}}
 
 " [junegunn/fzf.vim] {{{
@@ -158,9 +115,15 @@ nnoremap <silent> <C-f> :FZF<CR>
 " }}}
 
 " [Custom] {{{
-" shortcut to split pane
+colorscheme jellybeans
+
+" Open configure file
 nnoremap <silent> <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <silent> <leader>sv :source $MYVIMRC<cr>
+
+" Close window/buffer
+nnoremap <leader>bd :bd<CR>
+nnoremap <leader>cls :close<CR>
 
 " shortcut to change to normal mode
 inoremap jk <Esc>
@@ -204,7 +167,7 @@ set colorcolumn=0
 " ====================== Different filetype setting ========================
 
 " [c] {{{
-autocmd FileType c setlocal foldmethod=marker foldmarker={,}
+autocmd FileType c,cpp setlocal foldmethod=marker foldmarker={,}
 " }}}
 
 " [python] {{{
@@ -221,7 +184,7 @@ autocmd FileType scss setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd FileType make setlocal tabstop=4 shiftwidth=4 noexpandtab
 " }}}
 
-" [html] {{
+" [html] {{{
 autocmd FileType html,htmldjango setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd FileType html,htmldjango setlocal foldmethod=syntax
 autocmd FileType html,htmldjango setlocal nowrap
