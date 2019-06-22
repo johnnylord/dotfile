@@ -15,8 +15,10 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'roxma/nvim-yarp'
         Plug 'roxma/vim-hug-neovim-rpc'
     endif
-    Plug 'zchee/deoplete-jedi'          " python source for deoplete
+    Plug 'zchee/deoplete-clang'         " c/c++/object-c
     Plug 'shougo/neoinclude.vim'        " c family include header completion
+    Plug 'zchee/deoplete-jedi'          " python source for deoplete
+    Plug 'davidhalter/jedi-vim'       " python go to definition
 
     " Integration
     Plug 'christoomey/vim-tmux-navigator'	" Vim and tmux's buffer/window navigator
@@ -49,7 +51,12 @@ let g:UltiSnipsEditSplit="vertical"
 autocmd FileType scss set iskeyword+=-
 " }}}
 
+" [nerdcommenter] {{{
+let g:NERDSpaceDelims = 1
+" }}}
+
 " [deoplete] {{{
+let g:deoplete#sources#clang#libclang_path = "/usr/lib/llvm-7/lib/libclang.so.1"
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option({
     \ 'auto_complete_delay': 10,
@@ -134,6 +141,7 @@ set tabstop=4 shiftwidth=4 expandtab
 set nocompatible
 set cursorline
 hi CursorLine cterm=underline ctermbg=none
+set number
 set relativenumber
 
 set foldmethod=marker
@@ -169,6 +177,7 @@ autocmd FileType c,cpp setlocal foldmethod=marker foldmarker={,}
 " [python] {{{
 autocmd FileType python setlocal foldmethod=indent
 autocmd FileType python setlocal colorcolumn=80
+autocmd FileType python let g:NERDSpaceDelims=0
 "}}}
 
 " [scss] {{{
