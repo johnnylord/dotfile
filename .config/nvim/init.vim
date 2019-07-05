@@ -101,15 +101,13 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_auto_colors=0
 let g:indent_guides_guide_size=1
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=235
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=236
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=236
 " }}}
 
 " [vim-airline/vim-airline-themes] {{{
 let g:airline#extensions#tabline#enabled=1
-let g:airline#extensions#tabline#formatter='unique_tail'
 let g:airline_theme='minimalist'
-set laststatus=2
 let g:airline_powerline_fonts=1
 " }}}
 
@@ -123,6 +121,7 @@ nnoremap <silent> <C-f> :FZF<CR>
 
 " [Custom] {{{
 colorscheme jellybeans
+let g:jellybeans_background_color_256='None'
 
 " Open configure file
 nnoremap <silent> <leader>ev :vsplit $MYVIMRC<cr>

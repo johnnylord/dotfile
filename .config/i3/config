@@ -1,0 +1,131 @@
+# i3 config file (v4)
+set $mod Mod1
+
+# Load settings from .Xresources
+set_from_resource $black color0
+set_from_resource $gray color8
+set_from_resource $red color1
+set_from_resource $green color2
+set_from_resource $yellow color3
+set_from_resource $blue color4
+set_from_resource $magenta color5
+set_from_resource $cyan color6
+set_from_resource $white color7
+
+# Variable declaration
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+
+# Basic Definition
+# ================
+font pango:DejaVu Sans Mono 20
+for_window [class="^.*"] border pixel 2
+
+gaps outer 15
+gaps inner 15
+
+focus_follows_mouse no
+
+assign [class="URxvt"] $ws1
+assign [class="Chromium"] $ws3
+
+# Keybinding with $mod modifier
+# =============================
+# Change workspace
+bindsym $mod+bracketleft workspace prev
+bindsym $mod+bracketright workspace next
+
+# Change/Create workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+
+# Change Split orientation
+bindsym $mod+minus split vertical
+bindsym $mod+Shift+backslash split horizontal
+
+# Change focus
+bindsym $mod+h  focus left
+bindsym $mod+j  focus down
+bindsym $mod+k  focus up
+bindsym $mod+l  focus right
+
+# Launch terminal emulator
+bindsym $mod+Return exec i3-sensible-terminal
+# Launch app launcher
+bindsym $mod+d exec --no-startup-id rofi -show run
+# Launch switch window
+bindsym $mod+Tab exec --no-startup-id rofi -show window
+# fullscreen mode
+bindsym $mod+f fullscreen toggle
+
+# kill focused window
+bindsym $mod+q kill
+# exit i3 environment
+bindsym $mod+e exec "i3-msg exit"
+# restart i3, but preserve current state
+bindsym $mod+r restart
+# screenshot (selected area)
+bindsym --release $mod+Shift+x exec --no-startup-id import ~/screenshot-area.png
+bindsym --release Shift+Print exec --no-startup-id import ~/screenshot-area.png
+bindsym --release $mod+x exec --no-startup-id import -window root ~/screenshot.png
+bindsym --release Print exec --no-startup-id import -window root ~/screenshot.png
+
+
+# Keybinding with $mod+Ctrl modifier
+# =================================
+# Move container between workspace
+bindsym $mod+Shift+bracketleft move container to workspace prev
+bindsym $mod+Shift+bracketright move container to workspace next
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+
+# Move continaer in current workspace
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Resize continaer
+mode "resize" {
+    bindsym $mod+h resize shrink width 10 px or 10 ppt
+    bindsym $mod+l resize grow width 10 px or 10 ppt
+    bindsym $mod+j resize shrink height 10 px or 10 ppt
+    bindsym $mod+k resize grow height 10 px or 10 ppt
+    bindsym $mod+Shift+r mode "default"
+}
+
+bindsym $mod+Shift+r mode "resize"
+# Audio System
+# ============
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 10%+ unmute
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 10%- unmute
+bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle
+bindsym XF86AudioMicMute exec --no-startup-id amixer -q set Capture toggle
+
+# Backlight System
+# ============
+bindsym $mod+b exec --no-startup-id xbacklight -inc 10
+bindsym $mod+Shift+b exec --no-startup-id xbacklight -dec 10
+
+
+# Auto start application
+# =================
+# Daemon
+exec --no-startup-id xautolock -time 20 -locker "i3lock -o --fuzzy"
+exec --no-startup-id compton &
+# Foreground
+exec --no-startup-id i3-sensible-terminal
+exec --no-startup-id chromium
+
+
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id feh --bg-scale $HOME/.wallpaper.jpg

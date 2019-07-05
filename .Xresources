@@ -1,0 +1,53 @@
+#define bright #eff1f5
+#define white #c0c5ce
+#define black #2b303b
+#define gray #65737e
+#define red #bf616a
+#define green #a3be8c
+#define yellow #ebcb8b
+#define blue #8fa1b3
+#define magenta #b48ead
+#define cyan #96b5b4
+
+
+*foreground:   white
+*background:   black
+*cursorColor:  white
+
+! Color Palette
+! =============
+
+! black
+*color0:   black
+*color8:   gray
+
+! red
+*color1:   red
+*color9:   red
+
+! green
+*color2:   green
+*color10:  green
+
+! yellow
+*color3:   yellow
+*color11:  yellow
+
+! blue
+*color4:   blue
+*color12:  blue
+
+! magenta
+*color5:   magenta
+*color13:  magenta
+
+! cyan
+*color6:   cyan
+*color14:  cyan
+
+! white
+*color7:   white
+*color15:  bright
+
+! Include other configruation for specific apps
+#include ".Xresources.d/rxvt-unicode"
