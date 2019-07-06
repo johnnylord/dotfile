@@ -31,6 +31,10 @@ focus_follows_mouse no
 
 assign [class="URxvt"] $ws1
 assign [class="Chromium"] $ws3
+assign [class="Firefox"] $ws3
+assign [class="Slack"] $ws4
+# [BUG] assign [class="potify"] $ws3
+for_window [class="Spotify"] move to workspace $ws5
 
 # Keybinding with $mod modifier
 # =============================
@@ -71,10 +75,10 @@ bindsym $mod+e exec "i3-msg exit"
 # restart i3, but preserve current state
 bindsym $mod+r restart
 # screenshot (selected area)
-bindsym --release $mod+Shift+x exec --no-startup-id import ~/screenshot-area.png
-bindsym --release Shift+Print exec --no-startup-id import ~/screenshot-area.png
-bindsym --release $mod+x exec --no-startup-id import -window root ~/screenshot.png
-bindsym --release Print exec --no-startup-id import -window root ~/screenshot.png
+bindsym --release $mod+Shift+x exec --no-startup-id import ~/screenshot-area.png && notify-send "Screenshot" "pic saved at ~/screenshot-area.png"
+bindsym --release Shift+Print exec --no-startup-id import ~/screenshot-area.png && notify-send "Screenshot" "pic saved at ~/screenshot-area.png"
+bindsym --release $mod+x exec --no-startup-id import -window root ~/screenshot.png && notify-send "Screenshot" "pic saved at ~/screenshot.png"
+bindsym --release Print exec --no-startup-id import -window root ~/screenshot.png && notify-send "Screenshot" "pic saved at ~/screenshot.png"
 
 
 # Keybinding with $mod+Ctrl modifier
@@ -125,6 +129,8 @@ exec --no-startup-id compton &
 # Foreground
 exec --no-startup-id i3-sensible-terminal
 exec --no-startup-id chromium
+exec --no-startup-id slack
+exec --no-startup-id spotify
 
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
