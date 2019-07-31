@@ -51,7 +51,7 @@ font-2 = Font Awesome 5 Brands,Font Awesome 5 Brands Regular:style=Regular:size=
 
 modules-left = i3
 modules-center =
-modules-right = backlight-acpi pulseaudio wlan eth battery temperature date
+modules-right = backlight-acpi pulseaudio wlan eth battery0 battery1 temperature date
 
 locale = en_US.UTF-8
 
@@ -227,9 +227,41 @@ bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
-[module/battery]
+[module/battery0]
 type = internal/battery
 battery = BAT0
+adapter = AC
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = ${colors.yellow}
+
+format-discharging = <animation-discharging> <label-discharging>
+format-discharging-underline = ${colors.red}
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.green}
+format-full-underline = ${colors.green}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = ${colors.yellow}
+animation-charging-framerate = 750
+
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-3 = 
+animation-discharging-4 = 
+animation-discharging-foreground = ${colors.red}
+animation-discharging-framerate = 750
+
+[module/battery1]
+type = internal/battery
+battery = BAT1
 adapter = AC
 full-at = 98
 
