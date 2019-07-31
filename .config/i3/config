@@ -29,13 +29,12 @@ gaps inner 15
 
 focus_follows_mouse no
 
-assign [class="URxvt"] $ws1
 assign [class="Chromium"] $ws2
 assign [class="Firefox"] $ws2
 assign [class="Slack"] $ws3
+assign [class="electronic-wechat"] $ws3
 # [BUG] assign [class="potify"] $ws3
 for_window [class="Spotify"] move to workspace $ws4
-assign [class="Ranger"] $ws5
 
 # Keybinding with $mod modifier
 # =============================
@@ -63,9 +62,9 @@ bindsym $mod+l  focus right
 # Launch terminal emulator
 bindsym $mod+Return exec i3-sensible-terminal
 # Launch app launcher
-bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+d exec --no-startup-id urxvt -e ranger ~
 # Launch switch window
-bindsym $mod+Tab exec --no-startup-id rofi -show window
+bindsym $mod+Tab exec --no-startup-id rofi -show run
 # fullscreen mode
 bindsym $mod+f fullscreen toggle
 
@@ -131,9 +130,8 @@ exec --no-startup-id compton &
 exec --no-startup-id i3-sensible-terminal
 exec --no-startup-id chromium
 exec --no-startup-id slack
+exec --no-startup-id electronic-wechat
 exec --no-startup-id spotify
-exec --no-startup-id urxvt -e "ranger ~"
-
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id feh --bg-scale $HOME/.wallpaper.jpg
