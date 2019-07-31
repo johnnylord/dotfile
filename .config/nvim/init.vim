@@ -37,6 +37,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'tpope/vim-surround'               " Manipulate pair characters easily
 
     " Others
+    Plug 'vim-scripts/DrawIt'               " Text-based diagram
 call plug#end()
 " }}}
 
@@ -56,7 +57,7 @@ let g:NERDSpaceDelims = 1
 " }}}
 
 " [deoplete] {{{
-let g:deoplete#sources#clang#libclang_path = "/usr/lib/llvm-7/lib/libclang.so.1"
+let g:deoplete#sources#clang#libclang_path = "/lib/libclang.so"
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option({
     \ 'auto_complete_delay': 10,
@@ -95,14 +96,6 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
     " let g:deoplete#sources#clang#clang_header="/usr/lib/clang/"
     " }}}
 
-" }}}
-
-" [nathanaelkane/vim-indent-guides] {{{
-let g:indent_guides_enable_on_vim_startup=1
-let g:indent_guides_auto_colors=0
-let g:indent_guides_guide_size=1
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=236
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=236
 " }}}
 
 " [vim-airline/vim-airline-themes] {{{
