@@ -65,8 +65,19 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
     fi
 }
 
+# Virtualenv prompt
+venv=""
+
+function virtualenv_info() {
+    which pyenv 2>&1 1>/dev/null
+    if [[ $(echo $?) ]]; then
+        venv=$(pyenv version | sed 's/ .*//g')
+    fi
+}
+
 # Executed before each prompt.
 add-zsh-hook precmd vcs_info
+add-zsh-hook precmd virtualenv_info
 
 # Oxide prompt style.
-PROMPT=$'\n%{$oxide_limegreen%}%~%{$oxide_reset_color%} ${vcs_info_msg_0_}\n%(?.%{%F{white}%}.%{$oxide_red%})%(!.#.❯)%{$oxide_reset_color%} '
+PROMPT=$'\n%{$oxide_orange%}(${venv})%{$oxide_reset_color%} %{$oxide_limegreen%}%~%{$oxide_reset_color%} ${vcs_info_msg_0_}\n%(?.%{%F{white}%}.%{$oxide_red%})%(!.#.❯)%{$oxide_reset_color%} '
