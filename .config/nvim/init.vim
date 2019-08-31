@@ -172,11 +172,16 @@ autocmd FileType python setlocal colorcolumn=80
 autocmd FileType python let g:NERDSpaceDelims=0
 "}}}
 
-" [scss] {{{
-autocmd FileType scss setlocal foldmethod=marker foldmarker={,}
-autocmd FileType scss setlocal tabstop=2 shiftwidth=2 expandtab
+" [yaml] {{{
+autocmd FileType yaml setlocal foldmethod=indent
+autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 expandtab
 " }}}
 
+" [yaml] {{{
+autocmd FileType ruby setlocal foldmethod=indent
+autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 expandtab
+" }}}
+"
 " [make] {{{
 autocmd FileType make setlocal tabstop=4 shiftwidth=4 noexpandtab
 " }}}

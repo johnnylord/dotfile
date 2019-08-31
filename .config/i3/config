@@ -67,6 +67,8 @@ bindsym $mod+d exec --no-startup-id urxvt -e ranger ~
 bindsym $mod+Tab exec --no-startup-id rofi -show run
 # fullscreen mode
 bindsym $mod+f fullscreen toggle
+# Lock the screen
+bindsym $mod+s exec --no-startup-id i3lock -o --fuzzy
 
 # kill focused window
 bindsym $mod+q kill
@@ -93,10 +95,10 @@ bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
 
 # Move continaer in current workspace
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+h move left 10px
+bindsym $mod+Shift+j move down 10px
+bindsym $mod+Shift+k move up 10px
+bindsym $mod+Shift+l move right 10px
 
 # Resize continaer
 mode "resize" {
@@ -130,7 +132,6 @@ exec --no-startup-id compton &
 exec --no-startup-id i3-sensible-terminal
 exec --no-startup-id chromium
 exec --no-startup-id slack
-exec --no-startup-id electronic-wechat
 exec --no-startup-id spotify
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh

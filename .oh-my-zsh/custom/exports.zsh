@@ -1,3 +1,4 @@
+export TERM="rxvt-unicode"
 export EDITOR="nvim"
 
 # pyenv
