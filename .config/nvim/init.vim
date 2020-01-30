@@ -4,6 +4,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'nanotech/jellybeans.vim'      " colorscheme
     Plug 'scrooloose/nerdcommenter'     " shortcut/key map for comment
     Plug 'cakebaker/scss-syntax.vim'    " highlight for css and scss
+    Plug 'stephpy/vim-yaml'             " ymal file
 
     " Completion
     Plug 'sirver/ultisnips'             " manipulate code snippets(used vim-snippets engine)

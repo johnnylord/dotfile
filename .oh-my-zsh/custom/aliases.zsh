@@ -1,3 +1,3 @@
 alias vim="nvim"
 alias graph="git log --all --decorate --oneline --graph"
-alias ptt="ssh bbs@ptt.cc"
+alias prometheus='prometheus --config.file="$PROMETHEUS_ROOT"/prometheus.yml'

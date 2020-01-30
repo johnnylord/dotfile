@@ -1,6 +1,6 @@
 URxvt.transparent:  true
 URxvt.shading:      30
-URxvt.font:         xft:DejaVu Sans Mono for Powerline:size=16
+URxvt.font:         xft:DejaVu Sans Mono for Powerline:size=14
 URxvt.scrollBar:    false
 URxvt.cursorColor:  white
 

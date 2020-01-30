@@ -33,8 +33,10 @@ assign [class="Chromium"] $ws2
 assign [class="Firefox"] $ws2
 assign [class="Slack"] $ws3
 assign [class="electronic-wechat"] $ws3
+assign [class="AllToMP3"] $ws4
 # [BUG] assign [class="potify"] $ws3
 for_window [class="Spotify"] move to workspace $ws4
+assign [class="Fritzing"] $ws5
 
 # Keybinding with $mod modifier
 # =============================
@@ -83,7 +85,7 @@ bindsym --release $mod+x exec --no-startup-id import -window root ~/Pictures/scr
 bindsym --release Print exec --no-startup-id import -window root ~/Pictures/screenshot.png && notify-send "Screenshot" "pic saved at ~/Pictures/screenshot.png"
 
 
-# Keybinding with $mod+Ctrl modifier
+# Keybinding with $mod+Shift modifier
 # =================================
 # Move container between workspace
 bindsym $mod+Shift+bracketleft move container to workspace prev
@@ -93,6 +95,7 @@ bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
 bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
 
 # Move continaer in current workspace
 bindsym $mod+Shift+h move left 10px
@@ -133,6 +136,7 @@ exec --no-startup-id i3-sensible-terminal
 exec --no-startup-id chromium
 exec --no-startup-id slack
 exec --no-startup-id spotify
+exec --no-startup-id alltomp3
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id feh --bg-scale $HOME/.wallpaper.jpg
