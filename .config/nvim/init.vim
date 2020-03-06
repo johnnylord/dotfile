@@ -39,6 +39,7 @@ call plug#begin('~/.config/nvim/plugged')
 
     " Others
     Plug 'vim-scripts/DrawIt'               " Text-based diagram
+    Plug 'yggdroot/indentline'
 call plug#end()
 " }}}
 
@@ -112,6 +113,8 @@ nnoremap <silent> <C-t> :TagbarToggle<CR>
 " [junegunn/fzf.vim] {{{
 nnoremap <silent> <C-f> :FZF<CR>
 " }}}
+
+let g:indentLine_enabled = 1
 
 " [Custom] {{{
 colorscheme jellybeans
