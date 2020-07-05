@@ -18,6 +18,7 @@ set $ws2 2
 set $ws3 3
 set $ws4 4
 set $ws5 5
+set $ws6 6
 
 # Basic Definition
 # ================
@@ -30,13 +31,13 @@ gaps inner 15
 focus_follows_mouse no
 
 assign [class="Chromium"] $ws2
-assign [class="Firefox"] $ws2
+assign [class="firefox"] $ws2
 assign [class="Slack"] $ws3
 assign [class="electronic-wechat"] $ws3
 assign [class="AllToMP3"] $ws4
 # [BUG] assign [class="potify"] $ws3
 for_window [class="Spotify"] move to workspace $ws4
-assign [class="Fritzing"] $ws5
+assign [class="burp-StartBurp"] $ws5
 
 # Keybinding with $mod modifier
 # =============================
@@ -50,6 +51,7 @@ bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
 
 # Change Split orientation
 bindsym $mod+minus split vertical
@@ -70,7 +72,7 @@ bindsym $mod+Tab exec --no-startup-id rofi -show run
 # fullscreen mode
 bindsym $mod+f fullscreen toggle
 # Lock the screen
-bindsym $mod+s exec --no-startup-id i3lock -o --fuzzy
+bindsym $mod+s exec --no-startup-id i3lock -o
 
 # kill focused window
 bindsym $mod+q kill
@@ -79,7 +81,7 @@ bindsym $mod+e exec "i3-msg exit"
 # restart i3, but preserve current state
 bindsym $mod+r restart
 # screenshot (selected area)
-bindsym --release $mod+Shift+x exec --no-startup-id import ~/Pictures/screenshot-area.png && notify-send "Screenshot" "pic saved at ~/Pictures/screenshot-area.png"
+bindsym --release $mod+Shift+x exec --no-startup-id import ~/Pictures/screenshot-area.png && notify-send "Screenshot" "pic saved at ~/Pictures/screenshot-area.png" && copyq copy image/png - < ~/Pictures/screenshot-area.png
 bindsym --release Shift+Print exec --no-startup-id import ~/Pictures/screenshot-area.png && notify-send "Screenshot" "pic saved at ~/Pictures/screenshot-area.png"
 bindsym --release $mod+x exec --no-startup-id import -window root ~/Pictures/screenshot.png && notify-send "Screenshot" "pic saved at ~/Pictures/screenshot.png"
 bindsym --release Print exec --no-startup-id import -window root ~/Pictures/screenshot.png && notify-send "Screenshot" "pic saved at ~/Pictures/screenshot.png"
@@ -131,9 +133,13 @@ bindsym $mod+Shift+b exec --no-startup-id xbacklight -dec 10
 # Daemon
 exec --no-startup-id xautolock -time 20 -locker "i3lock -o --fuzzy"
 exec --no-startup-id compton &
+exec --no-startup-id copyq &
+
 # Foreground
 exec --no-startup-id i3-sensible-terminal
+# exec --no-startup-id burpsuite
 exec --no-startup-id chromium
+# exec --no-startup-id firefox
 exec --no-startup-id slack
 exec --no-startup-id spotify
 exec --no-startup-id alltomp3
