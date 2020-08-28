@@ -12,7 +12,7 @@
 ;   To learn more about how to configure Polybar
 ;   go to https://github.com/jaagr/polybar
 ;
-;   The README contains alot of cyanrmation
+;   The RADME contains alot of cyanrmation
 ;
 ;==========================================================
 
@@ -51,7 +51,7 @@ font-2 = Font Awesome 5 Brands,Font Awesome 5 Brands Regular:style=Regular:size=
 
 modules-left = i3
 modules-center =
-modules-right = backlight-acpi pulseaudio wlan eth battery0 battery1 temperature date
+modules-right = backlight-acpi pulseaudio wlan eth1 eth2 battery0 battery1 temperature date
 
 locale = en_US.UTF-8
 
@@ -141,9 +141,25 @@ format-disconnected =
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
-[module/eth]
+[module/eth1]
 type = internal/network
 interface = enp0s31f6
+interval = 3.0
+
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.green}
+format-connected-underline = ${colors.green}
+label-connected = %local_ip%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/eth2]
+type = internal/network
+interface = enp0s20f0u4u1u2
 interval = 3.0
 
 format-connected-prefix = " "

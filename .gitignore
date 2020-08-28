@@ -1,7 +1,6 @@
 .config/
-!.config/i3/*
-!.config/rofi/*
-!.config/polybar/*
-!.config/nvim/*
-!.config/compton/*
-
+!.config/i3/config
+!.config/rofi/config
+!.config/polybar/config
+!.config/nvim/init.vim
+!.config/compton/compton.conf
