@@ -40,6 +40,8 @@ call plug#begin('~/.config/nvim/plugged')
     " Others
     Plug 'vim-scripts/DrawIt'               " Text-based diagram
     Plug 'yggdroot/indentline'
+    Plug 'camspiers/animate.vim'
+    Plug 'camspiers/lens.vim'
 call plug#end()
 " }}}
 
