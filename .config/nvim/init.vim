@@ -42,6 +42,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'yggdroot/indentline'
     Plug 'camspiers/animate.vim'
     Plug 'camspiers/lens.vim'
+    Plug 'lervag/vimtex'
+    Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 call plug#end()
 " }}}
 
@@ -117,6 +119,12 @@ nnoremap <silent> <C-f> :FZF<CR>
 " }}}
 
 let g:indentLine_enabled = 1
+
+" [xuhdev/vim-latex-live-preview] {{{
+let g:tex_flavor = 'latex'
+let g:livepreview_previewer = 'mupdf'
+nnoremap <silent> <leader>o :LLPStartPreview<CR>
+" }}}
 
 " [Custom] {{{
 colorscheme jellybeans

@@ -66,13 +66,15 @@ bindsym $mod+l  focus right
 # Launch terminal emulator
 bindsym $mod+Return exec i3-sensible-terminal
 # Launch app launcher
-bindsym $mod+d exec --no-startup-id urxvt -e ranger ~
+bindsym $mod+d exec --no-startup-id urxvt -e ranger .
+bindsym $mod+i exec --no-startup-id sxiv -t ~/Pictures/*
+
 # Launch switch window
 bindsym $mod+Tab exec --no-startup-id rofi -show run
 # fullscreen mode
 bindsym $mod+f fullscreen toggle
 # Lock the screen
-bindsym $mod+s exec --no-startup-id i3lock -o
+bindsym $mod+s exec --no-startup-id flameshot full -r > /tmp/screen.png && convert /tmp/screen.png -scale 2.5% -resize 4000% /tmp/screen.png && i3lock -i /tmp/screen.png
 
 # kill focused window
 bindsym $mod+q kill
@@ -81,11 +83,7 @@ bindsym $mod+e exec "i3-msg exit"
 # restart i3, but preserve current state
 bindsym $mod+r restart
 # screenshot (selected area)
-bindsym --release $mod+Shift+x exec --no-startup-id import ~/Pictures/screenshot-area.png && notify-send "Screenshot" "pic saved at ~/Pictures/screenshot-area.png" && copyq copy image/png - < ~/Pictures/screenshot-area.png
-bindsym --release Shift+Print exec --no-startup-id import ~/Pictures/screenshot-area.png && notify-send "Screenshot" "pic saved at ~/Pictures/screenshot-area.png"
-bindsym --release $mod+x exec --no-startup-id import -window root ~/Pictures/screenshot.png && notify-send "Screenshot" "pic saved at ~/Pictures/screenshot.png"
-bindsym --release Print exec --no-startup-id import -window root ~/Pictures/screenshot.png && notify-send "Screenshot" "pic saved at ~/Pictures/screenshot.png"
-
+bindsym --release $mod+Shift+x exec --no-startup-id flameshot gui -p ~/Pictures
 
 # Keybinding with $mod+Shift modifier
 # =================================
@@ -131,7 +129,7 @@ bindsym $mod+Shift+b exec --no-startup-id xbacklight -dec 10
 # Auto start application
 # =================
 # Daemon
-exec --no-startup-id xautolock -time 20 -locker "i3lock -o --fuzzy"
+exec --no-startup-id xautolock -detectsleep -time 5 -locker "i3lock -d -c 000070"
 exec --no-startup-id compton &
 exec --no-startup-id copyq &
 
