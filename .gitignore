@@ -1,0 +1,12 @@
+.config/
+!.config/i3/config
+!.config/rofi/config
+!.config/polybar/config
+!.config/nvim/init.vim
+!.config/compton/compton.conf
+
+__pycache__
+
+*.pyc
+**/output/*
+!**/output/.gitkeep

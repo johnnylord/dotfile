@@ -1,0 +1,146 @@
+# i3 config file (v4)
+set $mod Mod1
+
+# Load settings from .Xresources
+set_from_resource $black color0
+set_from_resource $gray color8
+set_from_resource $red color1
+set_from_resource $green color2
+set_from_resource $yellow color3
+set_from_resource $blue color4
+set_from_resource $magenta color5
+set_from_resource $cyan color6
+set_from_resource $white color7
+
+# Variable declaration
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+
+# Basic Definition
+# ================
+font pango:DejaVu Sans Mono 20
+for_window [class="^.*"] border pixel 2
+
+gaps outer 15
+gaps inner 15
+
+focus_follows_mouse no
+
+assign [class="Chromium"] $ws2
+assign [class="firefox"] $ws2
+assign [class="Slack"] $ws3
+assign [class="electronic-wechat"] $ws3
+assign [class="AllToMP3"] $ws4
+# [BUG] assign [class="potify"] $ws3
+for_window [class="Spotify"] move to workspace $ws4
+assign [class="burp-StartBurp"] $ws5
+
+# Keybinding with $mod modifier
+# =============================
+# Change workspace
+bindsym $mod+bracketleft workspace prev
+bindsym $mod+bracketright workspace next
+
+# Change/Create workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+
+# Change Split orientation
+bindsym $mod+minus split vertical
+bindsym $mod+Shift+backslash split horizontal
+
+# Change focus
+bindsym $mod+h  focus left
+bindsym $mod+j  focus down
+bindsym $mod+k  focus up
+bindsym $mod+l  focus right
+
+# Launch terminal emulator
+bindsym $mod+Return exec i3-sensible-terminal
+# Launch app launcher
+bindsym $mod+d exec --no-startup-id urxvt -e ranger .
+bindsym $mod+i exec --no-startup-id sxiv -t ~/Pictures/*
+
+# Launch switch window
+bindsym $mod+Tab exec --no-startup-id rofi -show run
+# fullscreen mode
+bindsym $mod+f fullscreen toggle
+# Lock the screen
+bindsym $mod+s exec --no-startup-id flameshot full -r > /tmp/screen.png && convert /tmp/screen.png -scale 2.5% -resize 4000% /tmp/screen.png && i3lock -i /tmp/screen.png
+
+# kill focused window
+bindsym $mod+q kill
+# exit i3 environment
+bindsym $mod+e exec "i3-msg exit"
+# restart i3, but preserve current state
+bindsym $mod+r restart
+# screenshot (selected area)
+bindsym --release $mod+Shift+x exec --no-startup-id flameshot gui -p ~/Pictures
+
+# Keybinding with $mod+Shift modifier
+# =================================
+# Move container between workspace
+bindsym $mod+Shift+bracketleft move container to workspace prev
+bindsym $mod+Shift+bracketright move container to workspace next
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+
+# Move continaer in current workspace
+bindsym $mod+Shift+h move left 10px
+bindsym $mod+Shift+j move down 10px
+bindsym $mod+Shift+k move up 10px
+bindsym $mod+Shift+l move right 10px
+
+# Resize continaer
+mode "resize" {
+    bindsym $mod+h resize shrink width 10 px or 10 ppt
+    bindsym $mod+l resize grow width 10 px or 10 ppt
+    bindsym $mod+j resize shrink height 10 px or 10 ppt
+    bindsym $mod+k resize grow height 10 px or 10 ppt
+    bindsym $mod+Shift+r mode "default"
+}
+
+bindsym $mod+Shift+r mode "resize"
+# Audio System
+# ============
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 10%+ unmute
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 10%- unmute
+bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle
+bindsym XF86AudioMicMute exec --no-startup-id amixer -q set Capture toggle
+
+# Backlight System
+# ============
+bindsym $mod+b exec --no-startup-id xbacklight -inc 10
+bindsym $mod+Shift+b exec --no-startup-id xbacklight -dec 10
+
+
+# Auto start application
+# =================
+# Daemon
+exec --no-startup-id xautolock -detectsleep -time 5 -locker "i3lock -d -c 000070"
+exec --no-startup-id compton &
+exec --no-startup-id copyq &
+
+# Foreground
+exec --no-startup-id i3-sensible-terminal
+# exec --no-startup-id burpsuite
+exec --no-startup-id chromium
+# exec --no-startup-id firefox
+exec --no-startup-id slack
+exec --no-startup-id spotify
+exec --no-startup-id alltomp3
+
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id feh --bg-scale $HOME/.wallpaper.jpg
