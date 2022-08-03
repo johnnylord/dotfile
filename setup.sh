@@ -54,6 +54,7 @@ chown -R ${USERNAME}:${USERNAME} ${NVIM_DIR}
 chown -R ${USERNAME}:${USERNAME} ${VIM_PLUG_DIR}
 chown -R ${USERNAME}:${USERNAME} ${LOCAL_DIR}
 
+vim +PlugInstall +qall
 # Install tmux
 # =====================================================================
 apt-get install -y tmux
@@ -87,7 +88,7 @@ usermod --shell /bin/zsh ${USERNAME}
 
 # Setup configuration files
 ZSHRC="/home/${USERNAME}/.zshrc"
-cp shell/zshrc ${ZSHRC}
+cp zsh/zshrc ${ZSHRC}
 chown ${USERNAME}:${USERNAME} ${ZSHRC}
 
 # Install oh-my-zsh plugins
@@ -108,9 +109,9 @@ ZSH_PYENV_URL="https://github.com/mattberther/zsh-pyenv.git"
 
 if [ ! -d ${OH_MY_ZSH_DIR} ]; then
     git clone ${OH_MY_ZSH_URL} ${OH_MY_ZSH_DIR}
-    cp shell/aliases.zsh ${OH_MY_ZSH_CUSTOM_DIR}
-    cp shell/exports.zsh ${OH_MY_ZSH_CUSTOM_DIR}
-    cp shell/robbyrussell.zsh-theme ${OH_MY_ZSH_CUSTOM_DIR}
+    cp zsh/aliases.zsh ${OH_MY_ZSH_CUSTOM_DIR}
+    cp zsh/exports.zsh ${OH_MY_ZSH_CUSTOM_DIR}
+    cp zsh/robbyrussell.zsh-theme ${OH_MY_ZSH_CUSTOM_DIR}
 
     if [ ! -d ${OH_MY_ZSH_PLUGIN_DIR} ]; then
         mkdir -p ${OH_MY_ZSH_PLUGIN_DIR}
