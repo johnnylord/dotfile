@@ -28,6 +28,7 @@ apt-get install -y neovim
 apt-get install -y python-dev python-pip python3-dev python3-pip
 python -m pip install neovim
 python3 -m pip install neovim
+python3 -m pip install pynvim
 
 # Change editor alternatives
 update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
@@ -54,7 +55,6 @@ chown -R ${USERNAME}:${USERNAME} ${NVIM_DIR}
 chown -R ${USERNAME}:${USERNAME} ${VIM_PLUG_DIR}
 chown -R ${USERNAME}:${USERNAME} ${LOCAL_DIR}
 
-vim +PlugInstall +qall
 # Install tmux
 # =====================================================================
 apt-get install -y tmux
