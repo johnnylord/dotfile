@@ -145,7 +145,6 @@ nnoremap <silent> <leader>rs :%s/\s\+$//e<cr>
 
 " shortcut to change to normal mode
 inoremap jk <Esc>
-inoremap <Esc> <nop>
 
 let mapleader="\\"
 filetype plugin indent on
