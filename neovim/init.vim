@@ -100,6 +100,7 @@ set colorcolumn=0
 
 " [c] {{{
 autocmd FileType c,cpp setlocal foldmethod=marker foldmarker={,}
+autocmd FileType c,cpp setlocal colorcolumn=80
 " }}}
 
 " [python] {{{
