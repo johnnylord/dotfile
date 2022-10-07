@@ -14,7 +14,7 @@ function virtualenv_info() {
 function hostname_info() {
     string=$(hostname -i)
     host=(`echo $string | sed 's/\ /\n/g'`)
-    host=${host[-1]}
+    host=${host[1]}
 }
 
 autoload -U add-zsh-hook
