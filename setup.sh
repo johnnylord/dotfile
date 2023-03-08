@@ -83,8 +83,8 @@ fi
 # =====================================================================
 apt-get install -y zsh
 
-# Change user shell
-usermod --shell /bin/zsh ${USERNAME}
+# (User should change the shell manually) Change user shell
+# usermod --shell /bin/zsh ${USERNAME}
 
 # Setup configuration files
 ZSHRC="/home/${USERNAME}/.zshrc"
