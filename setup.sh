@@ -158,6 +158,8 @@ apt install -y \
     libffi-dev \
     liblzma-dev
 
+snap install ripgrep --classic
+
 if [[ -z "${XDG_SESSION_DESKTOP}" && "${XDG_SESSION_DESKTOP}" == "i3" ]]; then
     # Install Pinyin input type (Add input method on the top right toolbar)
     # ========================================================================
