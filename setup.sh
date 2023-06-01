@@ -138,8 +138,25 @@ apt-get install -y \
     ctags \
     htop \
     ncdu \
-    net-tools \
-    zlib*
+    net-tools
+
+# Install pyenv prerequisites libraries
+apt install -y \
+    build-essential \
+    libssl-dev \
+    zlib1g-dev \
+    libbz2-dev \
+    libreadline-dev \
+    libsqlite3-dev \
+    curl \
+    virtualenv \
+    libncursesw5-dev \
+    xz-utils \
+    tk-dev \
+    libxml2-dev \
+    libxmlsec1-dev \
+    libffi-dev \
+    liblzma-dev
 
 if [[ -z "${XDG_SESSION_DESKTOP}" && "${XDG_SESSION_DESKTOP}" == "i3" ]]; then
     # Install Pinyin input type (Add input method on the top right toolbar)
