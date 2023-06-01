@@ -17,11 +17,21 @@ function hostname_info() {
     host=${host[1]}
 }
 
+function nvpowertool_info() {
+    systemctl status nvpowertool.service 1>/dev/null 2>/dev/null
+    if [ $? -eq 0 ]; then
+	nvpowertool="[nvpowertool:active] "
+    else
+        nvpowertool=""
+    fi
+}
+
 autoload -U add-zsh-hook
 add-zsh-hook precmd virtualenv_info
 add-zsh-hook precmd hostname_info
+add-zsh-hook precmd nvpowertool_info
 
-PROMPT=$'%{$fg_bold[red]%}[${host}] %{$fg_bold[cyan]%}(${venv})'
+PROMPT=$'%{$fg_bold[red]%}[${host}] %{$fg_bold[yellow]%}${nvpowertool}%{$fg_bold[cyan]%}(${venv})'
 PROMPT+=' %{$fg[green]%}%c%{$reset_color%} $(git_prompt_info)'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
