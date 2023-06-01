@@ -12,7 +12,7 @@ function virtualenv_info() {
 }
 
 function hostname_info() {
-    string=$(hostname -i)
+    string=$(hostname -I)
     host=(`echo $string | sed 's/\ /\n/g'`)
     host=${host[1]}
 }
