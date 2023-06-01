@@ -138,7 +138,8 @@ apt-get install -y \
     ctags \
     htop \
     ncdu \
-    net-tools
+    net-tools \
+    zlib*
 
 if [[ -z "${XDG_SESSION_DESKTOP}" && "${XDG_SESSION_DESKTOP}" == "i3" ]]; then
     # Install Pinyin input type (Add input method on the top right toolbar)
