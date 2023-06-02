@@ -25,6 +25,9 @@ apt-get install -y software-properties-common
 add-apt-repository -y ppa:neovim-ppa/stable
 apt-get update
 apt-get install -y neovim
+if [ $? -eq 1 ]; then
+    snap install nvim --classic
+fi
 apt-get install -y python-dev python-pip python3-dev python3-pip
 python -m pip install neovim
 python3 -m pip install neovim
