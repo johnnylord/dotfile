@@ -23,30 +23,23 @@ DISTRO=$(lsb_release -r | cut -f 2)
 
 # Install neovim editor
 # ====================================================================
-if [ "$(echo "${DISTRO} == 18.04" | bc)" -eq 1 ]; then
-	apt-get install -y software-properties-common
-	add-apt-repository -y ppa:neovim-ppa/stable
-	apt-get update
-	apt-get install -y neovim
-else
-	snap install nvim --classic
-fi
+apt-get install -y software-properties-common
+add-apt-repository -y ppa:neovim-ppa/stable
+apt-get update
+apt-get install -y neovim
 
 apt-get install -y python-dev python-pip python3-dev python3-pip
 python -m pip install neovim
 python3 -m pip install neovim
 python3 -m pip install pynvim
-snap install ripgrep --classic
 
 # Change editor alternatives
-if [ "$(echo "${DISTRO} == 18.04" | bc)" -eq 1 ]; then
-	update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
-	update-alternatives --set vi
-	update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
-	update-alternatives --set vim
-	update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
-	update-alternatives --set editor
-fi
+update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
+update-alternatives --set vi
+update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
+update-alternatives --set vim
+update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
+update-alternatives --set editor
 
 # Setup configuration file
 NVIM_DIR="/home/${USERNAME}/.config/nvim"
