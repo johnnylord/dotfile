@@ -19,27 +19,34 @@ if [ $? -eq 1 ]; then
 fi
 echo "Setup environment for user '${USERNAME}'"
 
+DISTRO=$(lsb_release -r | cut -f 2)
+
 # Install neovim editor
 # ====================================================================
-apt-get install -y software-properties-common
-add-apt-repository -y ppa:neovim-ppa/stable
-apt-get update
-apt-get install -y neovim
-if [ $? -eq 1 ]; then
-    snap install nvim --classic
+if [ "$(echo "${DISTRO} == 18.04" | bc)" -eq 1 ]; then
+	apt-get install -y software-properties-common
+	add-apt-repository -y ppa:neovim-ppa/stable
+	apt-get update
+	apt-get install -y neovim
+else
+	snap install nvim --classic
 fi
+
 apt-get install -y python-dev python-pip python3-dev python3-pip
 python -m pip install neovim
 python3 -m pip install neovim
 python3 -m pip install pynvim
+snap install ripgrep --classic
 
 # Change editor alternatives
-update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
-update-alternatives --set vi
-update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
-update-alternatives --set vim
-update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
-update-alternatives --set editor
+if [ "$(echo "${DISTRO} == 18.04" | bc)" -eq 1 ]; then
+	update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
+	update-alternatives --set vi
+	update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
+	update-alternatives --set vim
+	update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
+	update-alternatives --set editor
+fi
 
 # Setup configuration file
 NVIM_DIR="/home/${USERNAME}/.config/nvim"
@@ -136,85 +143,34 @@ fi
 
 chown -R ${USERNAME}:${USERNAME} ${OH_MY_ZSH_DIR}
 
-# Install Handy tools
-apt-get install -y \
-    ctags \
-    htop \
-    ncdu \
-    net-tools
+# Install handy tools
+apt-get install -y ctags htop ncdu net-tools
 
 # Install pyenv prerequisites libraries
 apt install -y \
-    build-essential \
-    libssl-dev \
-    zlib1g-dev \
-    libbz2-dev \
-    libreadline-dev \
-    libsqlite3-dev \
-    curl \
-    virtualenv \
-    libncursesw5-dev \
-    xz-utils \
-    tk-dev \
-    libxml2-dev \
-    libxmlsec1-dev \
-    libffi-dev \
-    liblzma-dev
+	build-essential libssl-dev zlib1g-dev \
+	libbz2-dev libreadline-dev libsqlite3-dev \
+	curl virtualenv libncursesw5-dev xz-utils \
+	tk-dev libxml2-dev libxmlsec1-dev libffi-dev \
+	liblzma-dev
 
-snap install ripgrep --classic
+# Install prerequisite libraries for tegra flash
+apt-get install -y \
+	abootimg binfmt-support binutils \
+	cpp device-tree-compiler dosfstools \
+	lbzip2 libxml2-utils nfs-kernel-server \
+	python3-yaml qemu-user-static sshpass \
+	udev uuid-runtime whois openssl \
+	cpio
 
-if [[ -z "${XDG_SESSION_DESKTOP}" && "${XDG_SESSION_DESKTOP}" == "i3" ]]; then
-    # Install Pinyin input type (Add input method on the top right toolbar)
-    # ========================================================================
-    apt-get install -y fcitx fcitx-chewing
+if [ "$(echo "${DISTRO} > 22.04" | bc)" -eq 1 ]; then
+	sudo apt-get install -y python
+else
+	sudo apt-get install -y python2
+fi
 
-    # Change input type whenever login into the system
-    XINITRC="/home/${USERNAME}/.xinitrc"
-    XRESOURCE="/home/${USERNAME}/.Xresources"
-    cp xserver/xinitrc ${XINITRC}
-    cp xserver/Xresources ${XRESOURCE}
-    chown ${USERNAME}:${USERNAME} ${XINITRC}
-    chown ${USERNAME}:${USERNAME} ${XRESOURCE}
-
-    # Configure i3 environment
-    # =========================================================================
-    apt install -y \
-                feh \
-                acpi \
-                rofi \
-                clipit \
-                locate \
-                xbacklight \
-                alsa-tools \
-                terminator \
-                libnotify-bin \
-                pulseaudio-utils \
-                fonts-font-awesome
-
-    WM_CONFIG_DIR="/home/${USERNAME}/.config/i3"
-    mkdir -p ${WM_CONFIG_DIR}
-    cp -r i3wm/* ${WM_CONFIG_DIR}
-    chown -R ${USERNAME}:${USERNAME} ${SSH_DIR}
-
-    BAR_CONFIG_DIR="/home/${USERNAME}/.config/i3blocks"
-    if [ ! -d ${BAR_CONFIG_DIR} ]; then
-        mkdir -p ${BAR_CONFIG_DIR}
-        cp -r i3blocks/* ${BAR_CONFIG_DIR}
-        chown -R ${USERNAME}:${USERNAME} ${BAR_CONFIG_DIR}
-    fi
-
-    # Install lightweight terminal
-    # =========================================================================
-    apt-get install -y rxvt-unicode xsel
-
-    # Install perl-extensions system-wide
-    PERL_EXT_DIR="/home/${USERNAME}/.urxvt/ext"
-    if [ ! -d ${PERL_EXT_DIR} ]; then
-        mkdir -p ${PERL_EXT_DIR}
-        git clone "https://github.com/muennich/urxvt-perls.git" /tmp
-        cp /tmp/urxvt-perls/keyboard-select ${PERL_EXT_DIR}
-        cp /tmp/urxvt-perls/deprecated/url-select ${PERL_EXT_DIR}
-        cp /tmp/urxvt-perls/deprecated/clipboard ${PERL_EXT_DIR}
-        chown -R ${USERNAME}:${USERNAME} ${PERL_EXT_DIR}
-    fi
+if [ "$(echo "${DISTRO} > 20.04" | bc)" -eq 1 ]; then
+	sudo apt-get install -y liblz4-tool
+else
+	sudo apt-get install -y lz4
 fi
