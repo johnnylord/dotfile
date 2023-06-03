@@ -155,15 +155,3 @@ apt-get install -y \
 	python3-yaml qemu-user-static sshpass \
 	udev uuid-runtime whois openssl \
 	cpio
-
-if [ "$(echo "${DISTRO} > 22.04" | bc)" -eq 1 ]; then
-	sudo apt-get install -y python
-else
-	sudo apt-get install -y python2
-fi
-
-if [ "$(echo "${DISTRO} > 20.04" | bc)" -eq 1 ]; then
-	sudo apt-get install -y liblz4-tool
-else
-	sudo apt-get install -y lz4
-fi
