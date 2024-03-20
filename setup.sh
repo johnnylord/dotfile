@@ -159,6 +159,6 @@ apt-get install -y \
 # Install radare2 for reverse engineer
 _=$(which radare2)
 if [ $? -ne 0 ]; then
-	git clone https://github.com/radareorg/radare2
-	radare2/sys/install.sh
+	git clone https://github.com/radareorg/radare2 .radare2
+	.radare2/sys/install.sh
 fi
