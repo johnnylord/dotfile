@@ -161,5 +161,4 @@ _=$(which radare2)
 if [ $? -ne 0 ]; then
 	git clone https://github.com/radareorg/radare2
 	radare2/sys/install.sh
-	rm -rf radare2
 fi
