@@ -30,7 +30,6 @@ apt-get install -y \
 	build-essential \
 	cpio \
 	cpp \
-	ctags \
 	curl \
 	device-tree-compiler \
 	dosfstools \
@@ -50,12 +49,7 @@ apt-get install -y \
 	ncdu \
 	neovim \
 	net-tools \
-	nfs-kernel-server \
 	openssl \
-	python3-dev \
-	python3-pip
-	python3-yaml \
-	qemu-user-static \
 	sshpass \
 	tk-dev \
 	tmux \
@@ -75,29 +69,29 @@ update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
 update-alternatives --set editor
 
 # Setup neovim configuration file
-su - $USERNAME -c "mkdir -p $HOME/.config/nvim"
-su - $USERNAME -c "cp $TOP/neovim.init.vim $HOME/.config/nvim/init.vim"
-su - $USERNAME -c "curl -fLo $HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+su - $USERNAME -c "mkdir -p \$HOME/.config/nvim"
+su - $USERNAME -c "cp $TOP/neovim.init.vim \$HOME/.config/nvim/init.vim"
+su - $USERNAME -c "curl -fLo \$HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 
 usermod --shell /bin/zsh ${USERNAME}
-su - $USERNAME -c "cp $TOP/zshrc $HOME/.zshrc"
-su - $USERNAME -c "cp $TOP/tmux.conf $HOME/.tmux.conf"
+su - $USERNAME -c "cp $TOP/zshrc \$HOME/.zshrc"
+su - $USERNAME -c "cp $TOP/tmux.conf \$HOME/.tmux.conf"
 
 if [ ! -d "/home/$USERNAME/.oh-my-zsh" ]; then
-	su - $USERNAME -c "git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh"
+	su - $USERNAME -c "git clone https://github.com/robbyrussell/oh-my-zsh.git \$HOME/.oh-my-zsh"
 fi
 
-su - $USERNAME -c "cp $TOP/exports.zsh $HOME/.oh-my-zsh/custom"
-su - $USERNAME -c "cp $TOP/aliases.zsh $HOME/.oh-my-zsh/custom"
-su - $USERNAME -c "cp $TOP/robbyrussell.zsh-theme $HOME/.oh-my-zsh/custom"
-su - $USERNAME -c "mkdir -p $HOME/.oh-my-zsh/custom/plugins"
+su - $USERNAME -c "cp $TOP/exports.zsh \$HOME/.oh-my-zsh/custom"
+su - $USERNAME -c "cp $TOP/aliases.zsh \$HOME/.oh-my-zsh/custom"
+su - $USERNAME -c "cp $TOP/robbyrussell.zsh-theme \$HOME/.oh-my-zsh/custom"
+su - $USERNAME -c "mkdir -p \$HOME/.oh-my-zsh/custom/plugins"
 
 if [ ! -d "/home/$USERNAME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
-	su - $USERNAME -c "git clone https://github.com/zsh-users/zsh-autosuggestions.git $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+	su - $USERNAME -c "git clone https://github.com/zsh-users/zsh-autosuggestions.git \$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
 fi
 if [ ! -d "/home/$USERNAME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" ]; then
-	su - $USERNAME -c "git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
+	su - $USERNAME -c "git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
 fi
 if [ ! -d "/home/$USERNAME/.oh-my-zsh/custom/plugins/zsh-pyenv" ]; then
-	su - $USERNAME -c "git clone https://github.com/mattberther/zsh-pyenv.git $HOME/.oh-my-zsh/custom/plugins/zsh-pyenv"
+	su - $USERNAME -c "git clone https://github.com/mattberther/zsh-pyenv.git \$HOME/.oh-my-zsh/custom/plugins/zsh-pyenv"
 fi
